@@ -72,6 +72,7 @@
           
           <li><a class="nav-link scrollto" href="#">Jobs</a></li>
           <li><a class="nav-link scrollto" href="/showallEmployees">Add Employee</a></li>
+          <li><a class="nav-link scrollto" href="/showReports">Reports</a></li>
           <li><a class="nav-link scrollto" href="#menu">Events</a></li>
           
           <!-- <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
@@ -105,7 +106,7 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero"  class="d-flex align-items-center" >
+  <section id="hero"  class="d-flex align-items-center">
     <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
       <div class="row">
         <div class="col-lg-8">
@@ -266,23 +267,6 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- make for loop here -->
-              {%for j in reservation %}
-              <tr>
-                <th scope="row"></th>
-                <td>{{j.customer.name}}</td>
-                <td>{{j.customer.phone_number}}</td>
-                <td>{{j.number_of_persons}}</td>
-                <td>{{j.date}}</td>
-                <td>{{j.number_of_hours}}</td>
-                <td>{{j.occassion}}</td>
-                <td><a href="/Showmessage/{{j.id}}">See More</a></td>
-                
-                <td><a href="#">Accept</a> </td>
-              </tr>
-             {%endfor%}
-            </tbody>
           </table>
         </div>
 </section>

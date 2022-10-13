@@ -48,5 +48,11 @@
           {%endfor%}
         </tbody>
       </table>
+<!-- a way to show all orders -->
+      {% for i in orders%}
+      {% for j in i.cart_item.all %}
+      {{ j.meal.name}}
+      {% endfor %}
+      {% endfor %}
 </body>
 </html>

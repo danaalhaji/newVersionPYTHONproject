@@ -1,4 +1,5 @@
 from email import message
+from itertools import count
 from django.db import models
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -111,6 +112,7 @@ class Employee(models.Model):
 
 class Meal(models.Model):
     name = models.CharField(max_length = 255)
+    count = models.IntegerField()
     type = models.CharField(max_length = 255)
     description = models.CharField(max_length=255)
     price = models.IntegerField()
@@ -124,6 +126,7 @@ class Customer(models.Model):
     password = models.CharField(max_length=255)
     email = models.CharField(max_length = 255)
     address = models.CharField(max_length = 255)
+    count = models.IntegerField
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = CustomerManager()

@@ -260,6 +260,11 @@ def addToCart(request,id):
     quantity = request.POST['quantity']
     print(quantity)
     request.session['price'] = int(quantity) * int(meal1.price) + int(request.session['price'])
+    order = Order.objects.get(id = int(request.session['orderId']))
+    meal1.count+=int(quantity)
+    meal1.save()
+    order.final_price = int(quantity) * int(meal1.price)
+    order.save()
     print(request.session['price'])
     customer = Customer.objects.get(id = int(request.session['id_of_user']))
     Cart.objects.create(meal = meal1 , quantity = quantity, customer = customer , order = Order.objects.get(id=int(request.session['orderId'])))
@@ -274,6 +279,8 @@ def completeOrder(request):
         context ={
             'order': Order.objects.last()
         }
+        customer = Customer.objects.get(id = int(request.session['id_of_user']))
+        customer.count = customer.count + 1
         request.session['price'] = 0
         del request.session['orderId']
         return render(request, 'suc.html',context)
@@ -323,4 +330,13 @@ def ShowmessageReservation(request,id):
         'messid': messid
     }
     return render(request, "showReservationDetails.html",context)
+
+def showReports(request):
+    context={
+        'orders':Order.objects.all(),
+        'customers':Customer.objects.all(),
+        'meal': Meal.objects.all(),
+    }
+
+    return render(request,"reports.html" ,context)
 
